@@ -30,7 +30,7 @@ df = pd.read_csv("datasetzzz.csv")
 # ==============================
 kabupaten = st.selectbox(
     "Pilih Kabupaten / Kota",
-    sorted(df["kabupaten"].unique())
+    sorted(df["Kabupaten/Kota "].unique())
 )
 
 # ==============================
