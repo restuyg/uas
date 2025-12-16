@@ -18,7 +18,7 @@ try:
     df_lookup = pd.read_csv('datasetzzz.csv', sep=';') 
     
     # Ambil daftar unik Kabupaten/Kota untuk dropdown
-    list_kabupaten = df_lookup['Kabupaten/Kota'].unique().tolist()
+    list_kabupaten = df_lookup['Kabupaten/Kota '].unique().tolist()
     
     st.sidebar.success("Dataset Referensi Berhasil Dimuat!")
     
