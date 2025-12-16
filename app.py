@@ -1,18 +1,18 @@
 import streamlit as st
-import pickle
-import numpy as np
 import pandas as pd
+import numpy as np
+import pickle
 
 # ==============================
 # Konfigurasi Halaman
 # ==============================
 st.set_page_config(
-    page_title="Prediksi Daerah Rawan/Aman",
+    page_title="Prediksi Daerah Rawan / Aman",
     layout="centered"
 )
 
 st.title("Prediksi Daerah Rawan / Aman")
-st.write("Pilih **Kabupaten/Kota**, lalu sistem akan menampilkan hasil prediksi.")
+st.write("Pilih **Kabupaten/Kota**, sistem akan menampilkan hasil prediksi.")
 
 # ==============================
 # Load Model & Scaler
@@ -21,9 +21,17 @@ model = pickle.load(open("model.sav", "rb"))
 scaler = pickle.load(open("scaler.sav", "rb"))
 
 # ==============================
-# Load Data Kabupaten
+# Load Dataset
 # ==============================
-df = pd.read_csv("datasetzzz.csv")
+df = pd.read_csv("datasetzzz.csv", sep=";")
+
+# Ganti '-' menjadi 0
+df = df.replace("-", 0)
+
+# Ubah semua kolom numerik ke integer
+for col in df.columns:
+    if col != "Kabupaten/Kota":
+        df[col] = df[col].astype(int)
 
 # ==============================
 # Input User
@@ -37,11 +45,11 @@ kabupaten = st.selectbox(
 # Prediksi
 # ==============================
 if st.button("Prediksi"):
-    # Ambil nilai numerik kabupaten
-    nilai = df[df["kabupaten"] == kabupaten]["nilai"].values[0]
+    # Ambil data kabupaten terpilih
+    data_kab = df[df["Kabupaten/Kota"] == kabupaten]
 
-    # Ubah ke array 2D
-    X = np.array([[nilai]])
+    # Ambil fitur (kecuali nama kabupaten)
+    X = data_kab.drop(columns=["Kabupaten/Kota"])
 
     # Scaling
     X_scaled = scaler.transform(X)
