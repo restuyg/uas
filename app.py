@@ -68,7 +68,7 @@ if model is not None and scaler is not None:
         # --- 4. Lookup Data & Preprocessing ---
         
         # 1. Ambil data fitur numerik dari baris yang dipilih
-        data_row = df_lookup[df_lookup['Kabupaten/Kota'] == selected_kabupaten]
+        data_row = df_lookup[df_lookup['Kabupaten/Kota '] == selected_kabupaten]
         
         # PENTING: GANTI ['Jumlah'] dengan daftar kolom fitur numerik yang Anda gunakan 
         # untuk melatih model KNN (misalnya: ['Jumlah', 'Kepadatan', 'FiturX'])
