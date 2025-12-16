@@ -21,7 +21,7 @@ df = pd.read_csv("datasetzzz.csv", sep=";")
 # Bersihkan data
 df = df.replace("-", np.nan)
 for col in df.columns:
-    if col != "Kabupaten/Kota":
+    if col != "Kabupaten/Kota ":
         df[col] = pd.to_numeric(df[col], errors="coerce")
 df = df.fillna(0)
 
@@ -33,7 +33,7 @@ kabupaten = st.selectbox(
 
 # Prediksi
 if st.button("Prediksi"):
-    X = df[df["Kabupaten/Kota"] == kabupaten].drop(columns=["Kabupaten/Kota"])
+    X = df[df["Kabupaten/Kota "] == kabupaten].drop(columns=["Kabupaten/Kota "])
     X_scaled = scaler.transform(X)
     hasil = model.predict(X_scaled)[0]
 
