@@ -80,12 +80,3 @@ if st.button("Prediksi"):
             "Indeks kriminal relatif tinggi sehingga daerah diklasifikasikan sebagai rawan."
         )
 
-    # ==============================
-    # Grafik Indikator Kejahatan
-    # ==============================
-    st.subheader("Grafik Indikator Kriminalitas")
-
-    grafik_df = X.T
-    grafik_df.columns = ["Jumlah Kasus"]
-
-    st.bar_chart(grafik_df)
